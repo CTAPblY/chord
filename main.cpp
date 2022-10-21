@@ -60,14 +60,14 @@ double mixChord(double a, double b){
 
 
 double halfDivision(double a, double b){
-    double c = (a + b)/2;
-    while (abs(a - b) > epsilon && abs(x(c)) > epsilon){
-        double c = (a + b)/2;
+    double c;
+    while (abs(a - b) > epsilon ){
+            c = (a + b)/2;
         if (x(a)*x(c) < 0)
             b = c;
         else a = c;
     }
-    return (a + b)/2;
+    return c;
 }
 
 int main() {
