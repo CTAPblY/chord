@@ -2,7 +2,7 @@
 #include <math.h>
 
 using namespace std;
-const double epsilon = 0.001;   ///погршность
+const double epsilon = 0.0001;   ///погршность
 const double a = 1; ///начало интеравла для метода хорд
 const double b = 2; ///конец интервала для метода хорд
 
@@ -57,13 +57,30 @@ double mixChord(double a, double b){
     return a;
 }
 
+
+double halfDivision(double a, double b){
+    while (abs(a - b) > epsilon){
+        double c = (a + b)/2;
+        if (x(a)*x(c) < 0)
+            b = c;
+        else a = c;
+    }
+    return (a + b)/2;
+}
+
 int main() {
 
     cout << "Chord method\n";
     cout << chord(a)<<endl;    /// рассматриваем промежуток от 1 до 2
+
     cout <<"\nCombinated chord method\n";
     cout << mixChord(-3, -2)<<endl;    ///рассматриваем интервалы [-3;-2], [-2;-1], [0;1]
     cout << mixChord(-2, -1)<<endl;
-    cout << mixChord(0, 1);
+    cout << mixChord(0, 1) << endl;
+
+    cout <<"\nHalf division method\n";
+    cout << halfDivision(-3, -2) << endl; ///рассматриваем интервалы [-3;-2], [-2;-1], [0;1]
+    cout << halfDivision(-2, -1) << endl;
+    cout << halfDivision(0, 1) << endl;
     return 0;
 }
