@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include "GSS.h"
 
 using namespace std;
 const double epsilon = 0.0001;   ///погршность
@@ -59,7 +60,8 @@ double mixChord(double a, double b){
 
 
 double halfDivision(double a, double b){
-    while (abs(a - b) > epsilon){
+    double c = (a + b)/2;
+    while (abs(a - b) > epsilon && abs(x(c)) > epsilon){
         double c = (a + b)/2;
         if (x(a)*x(c) < 0)
             b = c;
@@ -82,5 +84,11 @@ int main() {
     cout << halfDivision(-3, -2) << endl; ///рассматриваем интервалы [-3;-2], [-2;-1], [0;1]
     cout << halfDivision(-2, -1) << endl;
     cout << halfDivision(0, 1) << endl;
+
+    cout << "\nGolden section method\n";
+    int iter = 0;
+    cout << GSS(x, -3, -2, epsilon, iter)<<endl;
+    cout << GSS(x, -2, -1, epsilon, iter)<<endl;
+    cout << GSS(x, 0, 1, epsilon, iter)<<endl;
     return 0;
 }
