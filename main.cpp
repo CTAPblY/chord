@@ -45,12 +45,12 @@ double sqrtDiff(double x){
 double mixChord(double a, double b){
     double aver = (a + b)/2;
     if (diff(aver) * sqrtDiff(aver) < 0){   ///определяем приближение метода комбинированных хорд(с избытком или с недостатком)
-        while (b - a > epsilon){
+        while (abs(b - a) > epsilon){
             b = a - (x(a)*(b - a))/(x(b) - x(a));
             a = a - x(a)/diff(a);
         }
     }   else {
-        while (b - a > epsilon){
+        while (abs(b - a) > epsilon){
             a = a - (x(a)*(b - a))/(x(b) - x(a));
             b = b - x(b)/diff(b);
         }
@@ -67,7 +67,7 @@ double halfDivision(double a, double b){
             b = c;
         else a = c;
     }
-    return c;
+    return a;
 }
 
 int main() {
